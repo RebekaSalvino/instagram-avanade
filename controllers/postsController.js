@@ -1,9 +1,15 @@
+const { request } = require('express');
 const { Post } = require('../models');
+
 const postsController = {
     index: async (req, res) => {
-        let posts =  await Post.findAll();
-        return res.json(posts);
-    
+        const posts =  await Post.findAll(); ({
+        include: ['usuario', 'comentarios', 'curtiu']
+
+    });
+        
+        return res.render('index', {listaPosts: posts});
+
 },
 create: async (req, res) =>{
     let dadosPosts = req.body;
@@ -21,8 +27,7 @@ update: async (req, res) => {
     let dadosAtualizados = req.body;
     let atualizado = await Post.update({
         usuarios_id: dadosAtualizados.usuarios_id
-    //    email: dadosAtualizados.email,
-    //     senha: dadosAtualizados.senha
+    
 
     }, {
         where: {id:id}

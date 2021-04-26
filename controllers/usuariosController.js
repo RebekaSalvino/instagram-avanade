@@ -1,10 +1,18 @@
-const { Usuario } = require('../models');
+const bcrypt = require('bcryptjs');
+const { Usuario,sequelize } = require('../models');
+
 const usuariosController = {
     index: async (req, res) => {
-        let usuarios =  await Usuario.findAll();
-        return res.json(usuarios);
+        const usuarios =  await Usuario.findAll();
+        
+        return res.render('usuarios', { listaUsuarios: usuarios});
     
 },
+
+registro: (request, response) => {
+    return response.render('registro');
+},
+
 create: async(req, res) =>{
     let dadosUsuarios = req.body;
     let novoUsuario = await Usuario.create({

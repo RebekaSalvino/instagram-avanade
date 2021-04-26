@@ -7,7 +7,7 @@ router.post('/', postsController.create);
 router.put('/:id', postsController.update);
 router.delete('/:id', postsController.delete);
 
-router.get('/:id', postsController.show);
+router.get('/:usuarios_id', postsController.show);
 
 
 

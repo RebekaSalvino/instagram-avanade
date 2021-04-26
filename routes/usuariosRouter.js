@@ -9,6 +9,7 @@ router.post('/', validarCadastro, usuariosController.create);
 router.put('/:id', usuariosController.update);
 router.delete('/:id', usuariosController.delete);
 
+router.get('/registro', usuariosController.registro)
 
 
 module.exports = router;
